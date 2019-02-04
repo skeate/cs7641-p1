@@ -71,7 +71,7 @@ def iterationLC(clfObj,trgX,trgY,tstX,tstY,params,clf_type=None,dataset=None):
     np.random.seed(55)
     if clf_type is None or dataset is None:
         raise
-    cv = GridSearchCV(clfObj,n_jobs=-1,param_grid=params,refit=True,cv=5,scoring=scorer)
+    cv = ms.GridSearchCV(clfObj,n_jobs=-1,param_grid=params,refit=True,cv=5,scoring=scorer)
     cv.fit(trgX,trgY)
     regTable = pd.DataFrame(cv.cv_results_)
     regTable.to_csv('./output/ITER_base_{}_{}.csv'.format(clf_type,dataset),index=False)
