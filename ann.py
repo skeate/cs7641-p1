@@ -4,7 +4,7 @@ Artificial Neural Network
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from sklearn import neural_network
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -46,12 +46,12 @@ def run_ann(data, dataset, solved_params=None):
     # plot_learning_curve(clf, dataset + ' neural network',
     #                     x, y, cv=5, n_jobs=4, scoring=scorer)
     # plt.savefig('./graphs/' + dataset + '-ann.png')
-    print('Creating timing curve for ' + dataset)
-    plot_timing_curve(clf, x, y, 'neural network', dataset)
-    plt.savefig('./graphs/' + dataset + '-ANN-timing.png')
-    print('Creating iteration curve for ' + dataset)
-    plot_iteration_curve(clf, x_train, y_train, x_test, y_test, iter_adjust, 'neural network', dataset)
-    plt.savefig('./graphs/' + dataset + '-ANN-iteration.png')
+    # print('Creating timing curve for ' + dataset)
+    # plot_timing_curve(clf, x, y, 'neural network', dataset)
+    # plt.savefig('./graphs/' + dataset + '-ANN-timing.png')
+    # print('Creating iteration curve for ' + dataset)
+    # plot_iteration_curve(clf, x_train, y_train, x_test, y_test, iter_adjust, 'neural network', dataset)
+    # plt.savefig('./graphs/' + dataset + '-ANN-iteration.png')
     conf = confusion_matrix(y_test, clf.predict(x_test))
     conf = conf.astype('float') / conf.sum(axis=1)[:, np.newaxis]
     print('Confusion matrix:')

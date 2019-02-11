@@ -3,14 +3,14 @@ Decision tree running code
 """
 
 import warnings
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from helpers import dtclf_pruned, basicResults, scorer
 from parse_data import read_gestures, read_sarcasm, read_wine
-from plot import plot_learning_curve
+# from plot import plot_learning_curve
 
 ALPHAS = [x * (10 ** y) for x in [-1, 1] for y in range(-4, 4)]
 
@@ -39,7 +39,7 @@ def run_dt(data, title, solved_params=None):
     else:
         print("Using pre-solved hyperparameters")
         clf = pipe.set_params(**solved_params)
-    print ("Plotting learning curve")
+    # print ("Plotting learning curve")
     # plot_learning_curve(clf, title + ' decision tree', x,
     #                     y, n_jobs=4, scoring=scorer, ylim=(0, 1))
     # plt.savefig('./graphs/' + title + '-dt.png')

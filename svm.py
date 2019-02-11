@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from sklearn import svm
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -8,7 +8,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from helpers import basicResults, scorer
 from parse_data import read_gestures, read_wine
-from plot import plot_learning_curve, plot_timing_curve, plot_iteration_curve
+# from plot import plot_learning_curve, plot_timing_curve, plot_iteration_curve
 
 iter_adjust = {
     'SVM__max_iter': [2**x for x in range(12)] +
@@ -31,11 +31,11 @@ def run_svm_linear(data, dataset):
     clf = basicResults(pipe, x_train, y_train, x_test,
                        y_test, params, 'SVM-Linear', dataset)
 
-    plot_timing_curve(clf, x, y, 'linear svm', dataset)
-    plt.savefig('./graphs/' + dataset + '-svm-linear-timing.png')
-    plot_iteration_curve(clf, x_train, y_train, x_test,
-                         y_test, iter_adjust, 'linear svm', dataset)
-    plt.savefig('./graphs/' + dataset + '-svm-linear-iteration.png')
+    # plot_timing_curve(clf, x, y, 'linear svm', dataset)
+    # plt.savefig('./graphs/' + dataset + '-svm-linear-timing.png')
+    # plot_iteration_curve(clf, x_train, y_train, x_test,
+    #                      y_test, iter_adjust, 'linear svm', dataset)
+    # plt.savefig('./graphs/' + dataset + '-svm-linear-iteration.png')
     conf = confusion_matrix(y_test, clf.predict(x_test))
     conf = conf.astype('float') / conf.sum(axis=1)[:, np.newaxis]
     print('Confusion matrix:')
@@ -55,11 +55,11 @@ def run_svm_rbf(data, dataset):
     clf = basicResults(pipe, x_train, y_train, x_test,
                        y_test, params, 'SVM-RBF', dataset)
 
-    plot_timing_curve(clf, x, y, 'rbf svm', dataset)
-    plt.savefig('./graphs/' + dataset + '-svm-rbf-timing.png')
-    plot_iteration_curve(clf, x_train, y_train, x_test,
-                         y_test, iter_adjust, 'rbf svm', dataset)
-    plt.savefig('./graphs/' + dataset + '-svm-rbf-iteration.png')
+    # plot_timing_curve(clf, x, y, 'rbf svm', dataset)
+    # plt.savefig('./graphs/' + dataset + '-svm-rbf-timing.png')
+    # plot_iteration_curve(clf, x_train, y_train, x_test,
+    #                      y_test, iter_adjust, 'rbf svm', dataset)
+    # plt.savefig('./graphs/' + dataset + '-svm-rbf-iteration.png')
     conf = confusion_matrix(y_test, clf.predict(x_test))
     conf = conf.astype('float') / conf.sum(axis=1)[:, np.newaxis]
     print('Confusion matrix:')
