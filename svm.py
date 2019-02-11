@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn import svm
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from helpers import basicResults, scorer
 from parse_data import read_gestures, read_wine
@@ -35,6 +36,11 @@ def run_svm_linear(data, dataset):
     plot_iteration_curve(clf, x_train, y_train, x_test,
                          y_test, iter_adjust, 'linear svm', dataset)
     plt.savefig('./graphs/' + dataset + '-svm-linear-iteration.png')
+    conf = confusion_matrix(y_test, clf.predict(x_test))
+    conf = conf.astype('float') / conf.sum(axis=1)[:, np.newaxis]
+    print('Confusion matrix:')
+    print(conf)
+    np.savetxt('./output/SVM-Linear_{}_confusion.csv'.format(dataset), conf, delimiter=',', fmt='%.2f')
 
 
 def run_svm_rbf(data, dataset):
@@ -54,6 +60,11 @@ def run_svm_rbf(data, dataset):
     plot_iteration_curve(clf, x_train, y_train, x_test,
                          y_test, iter_adjust, 'rbf svm', dataset)
     plt.savefig('./graphs/' + dataset + '-svm-rbf-iteration.png')
+    conf = confusion_matrix(y_test, clf.predict(x_test))
+    conf = conf.astype('float') / conf.sum(axis=1)[:, np.newaxis]
+    print('Confusion matrix:')
+    print(conf)
+    np.savetxt('./output/SVM-RBF_{}_confusion.csv'.format(dataset), conf, delimiter=',', fmt='%.2f')
 
 
 if __name__ == '__main__':

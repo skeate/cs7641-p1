@@ -42,7 +42,6 @@ def basicResults(clfObj,trgX,trgY,tstX,tstY,params,clf_type=None,dataset=None):
     curve_test_scores.to_csv('./output/{}_{}_LC_test.csv'.format(clf_type,dataset))
     plt.figure()
     plt.title(dataset)
-    plt.ylim(0, 1)
     plt.xlabel("Training examples")
     plt.ylabel("Score")
     train_sizes, train_scores, test_scores = curve

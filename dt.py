@@ -45,15 +45,13 @@ def run_dt(data, title, solved_params=None):
     # plt.savefig('./graphs/' + title + '-dt.png')
     y_pred = clf.predict(x_test)
     conf = confusion_matrix(y_test, clf.predict(x_test))
+    conf = conf.astype('float') / conf.sum(axis=1)[:, np.newaxis]
     print('Confusion matrix:')
     print(conf)
-    np.savetxt('./output/DT_{}_confusion.csv'.format(title), conf, delimiter=',', fmt='%d')
+    np.savetxt('./output/DT_{}_confusion.csv'.format(title), conf, delimiter=',', fmt='%.2f')
 
 
 if __name__ == '__main__':
-    with warnings.catch_warnings():
-        warnings.simplefilter('ignore',  category=ImportWarning)
-        run_dt(read_gestures(), 'gestures')
-        # run_dt(read_sarcasm(), 'sarcasm')
-        # run_dt(read_wine(), 'wine')
-        # plt.show()
+    run_dt(read_gestures(), 'gestures')
+    run_dt(read_wine(), 'wine')
+    # plt.show()
